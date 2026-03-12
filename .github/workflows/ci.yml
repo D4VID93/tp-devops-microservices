@@ -3,6 +3,8 @@ name: CI Microservices
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
@@ -19,14 +21,44 @@ jobs:
           java-version: '21'
           cache: 'maven'
 
-      - name: Build Product Service
+      # --- ÉTAPE MAVEN : Compilation et Tests ---
+      - name: Build Config Service
         run: |
-          cd product-service
+          cd config-service
           mvn clean install
 
-      - name: Build Order Service
+      - name: Build Discovery Service
         run: |
-          cd order-service
+          cd discovery-service
           mvn clean install
-          
-      # Ajoute ici les autres services (catalogue, paiement...) sur le même modèle
+
+      - name: Build Catalogue Service
+        run: |
+          cd catalogue-service
+          mvn clean install
+
+      - name: Build Commande Service
+        run: |
+          cd commande-service
+          mvn clean install
+
+      - name: Build Paiement Service
+        run: |
+          cd paiement-service
+          mvn clean install
+
+      - name: Build Gateway Service
+        run: |
+          cd gateway-service
+          mvn clean install
+
+      # --- ÉTAPE DOCKER (Partie 7 du TP) ---
+      - name: Build Docker image Catalogue
+        run: |
+          cd catalogue-service
+          docker build -t catalogue-service:1.0 .
+
+      - name: Build Docker image Commande
+        run: |
+          cd commande-service
+          docker build -t commande-service:1.0 .
