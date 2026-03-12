@@ -24,7 +24,6 @@ jobs:
       # 3. Build microservices
       - name: Build Microservices
         run: mvn clean package -DskipTests
-        working-directory: ./Microservices-main
 
       # 4. Build Docker images
       - name: Build Docker Images
