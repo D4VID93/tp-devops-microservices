@@ -8,6 +8,6 @@ class PaiementServiceApplicationTests {
 	@Test
 	void testBasiquePourLePipeline() {
 		int resultat = 10 * 2;
-		assertEquals(99, resultat, "Le pipeline doit passer !");
+		assertEquals(20, resultat, "Le pipeline doit passer !");
 	}
 }
