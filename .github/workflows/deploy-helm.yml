@@ -58,6 +58,10 @@ jobs:
           docker push d4vid93/commande-service:latest
           docker push d4vid93/paiement-service:latest
 
+      # 6.5 Créer un cluster Kubernetes temporaire pour le test
+      - name: Create Kind Cluster
+        uses: helm/kind-action@v1.4.0
+
       # 7. Installation de Helm
       - name: Setup Helm
         uses: azure/setup-helm@v3
