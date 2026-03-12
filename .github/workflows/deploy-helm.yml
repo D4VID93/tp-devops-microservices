@@ -23,7 +23,13 @@ jobs:
 
       # 3. Build microservices
       - name: Build Microservices
-        run: mvn clean package -DskipTests
+        run: |
+          mvn clean package -DskipTests -f ./config-service/pom.xml
+          mvn clean package -DskipTests -f ./discovery-service/pom.xml
+          mvn clean package -DskipTests -f ./gateway-service/pom.xml
+          mvn clean package -DskipTests -f ./catalogue-service/pom.xml
+          mvn clean package -DskipTests -f ./commande-service/pom.xml
+          mvn clean package -DskipTests -f ./paiement-service/pom.xml
 
       # 4. Build Docker images
       - name: Build Docker Images
