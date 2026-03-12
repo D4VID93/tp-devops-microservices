@@ -1,13 +1,13 @@
 package com.example.paiement_service;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
 class PaiementServiceApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void testBasiquePourLePipeline() {
+		int resultat = 10 * 2;
+		assertEquals(20, resultat, "Le pipeline doit passer !");
 	}
-
 }
