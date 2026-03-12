@@ -1,0 +1,8 @@
+replicaCount: 1
+image:
+  repository: discovery-service
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: NodePort
+  port: 8761

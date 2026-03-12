@@ -1,0 +1,5 @@
+apiVersion: v2
+name: config-service
+description: Chart Helm pour config-service
+version: 0.1.0
+appVersion: "1.0"
