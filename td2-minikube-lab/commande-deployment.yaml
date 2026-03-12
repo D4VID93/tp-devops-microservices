@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: commande-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: commande-service
+  template:
+    metadata:
+      labels:
+        app: commande-service
+    spec:
+      containers:
+        - name: commande-service
+          image: commande-service:1.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+            - name: CONFIG_SERVER_URL
+              value: http://config-service:8888
+            - name: EUREKA_SERVER_URL
+              value: http://discovery-service:8761/eureka
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres-service:5432/service1db # Ou service3db si tu as créé une 3ème base
+            - name: SPRING_DATASOURCE_USERNAME
+              value: service1user
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: service1pass
+            - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+              value: org.postgresql.Driver
+          volumeMounts:
+            - mountPath: /data
+              name: commande-storage
+      volumes:
+        - name: commande-storage
+          persistentVolumeClaim:
+            claimName: commande-pvc

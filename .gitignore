@@ -1,0 +1,16 @@
+# Binaires et exécutables
+*.exe
+*-linux-amd64
+minikube*
+
+# Maven
+target/
+*.jar
+*.war
+
+# IDE
+.idea/
+.vscode/
+*.iml
+minikube-linux-amd64
+target/
